@@ -5,9 +5,11 @@ const router = express.Router();
 
 const dashboard = require("./controllers/dashboard.js");
 const about = require("./controllers/about.js");
+const viewer = require("./controllers/viewer.js");
 
 router.get("/", dashboard.index);
 router.get("/dashboard", dashboard.index);
+router.get("/viewer", viewer.index)
 router.get("/about", about.index);
 
 module.exports = router;
