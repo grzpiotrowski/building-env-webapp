@@ -16,3 +16,9 @@ https://www.youtube.com/watch?v=YK1Sw_hnm58
 
 * Three.js documentation \
 https://threejs.org/docs/#manual/en/introduction/Creating-a-scene
+
+* GLTF Loader \
+https://threejs.org/docs/#examples/en/loaders/GLTFLoader
+
+* Camera orbit controls \
+https://threejs.org/docs/#examples/en/controls/OrbitControls
