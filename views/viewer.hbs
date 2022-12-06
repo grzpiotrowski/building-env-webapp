@@ -1,5 +1,13 @@
 {{> menu id="viewer"}}
 
 <section class="ui segment" id="viewer-container" style="height:90vh">
+    <script type="importmap">
+        {
+            "imports": {
+            "three": "https://unpkg.com/three@0.147/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.147/examples/jsm/"
+            }
+        }
+    </script>
     <script type="module" src="js/viewer.js"></script>
 </section>
