@@ -7,7 +7,8 @@ https://github.com/grzpiotrowski/building-env-monitor
 
 The goal of this project is to create a web app allowing to display a 3D model loaded from a gltf or glb file, and integrate real time sensor data from an IoT device using websockets.
 
-
+## Deployed web app
+https://building-env-monitor.glitch.me/
 
 # Resources
 
@@ -22,3 +23,6 @@ https://threejs.org/docs/#examples/en/loaders/GLTFLoader
 
 * Camera orbit controls \
 https://threejs.org/docs/#examples/en/controls/OrbitControls
+
+* Use WebSocket to connect to MQTT broker \
+https://emqx.medium.com/use-websocket-to-connect-to-mqtt-broker-9e7baf1aa773
