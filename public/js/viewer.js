@@ -13,6 +13,9 @@ let container = document.getElementById('viewer-container');
 renderer.setSize($(container).width(), $(container).height());
 container.appendChild(renderer.domElement);
 
+// Dynamically adjust renderer size when browser window is resized
+window.addEventListener('resize', onWindowResize);
+
 // Orbit camera controls
 const controls = new OrbitControls(camera, renderer.domElement);
 
@@ -49,6 +52,8 @@ camera.position.z = 3.86;
 //controls.update() must be called after any manual changes to the camera's transform
 controls.update(); 
 
+
+/***  LIGHTING ***/
 const directionalLight = new THREE.DirectionalLight( 0xffffff, 3 );
 directionalLight.translateX(15);
 directionalLight.translateZ(10);
@@ -61,6 +66,15 @@ scene.add(directionalLight2);
 
 const directionalLightTopDown = new THREE.DirectionalLight( 0xffffff, 2 );
 scene.add(directionalLightTopDown);
+
+
+function onWindowResize() {
+	let container = document.getElementById('viewer-container');
+    camera.aspect = $(container).width() / $(container).height();
+    camera.updateProjectionMatrix();
+    renderer.setSize($(container).width(), $(container).height());
+}
+
 
 function animate() {
     requestAnimationFrame(animate);

@@ -1,4 +1,4 @@
-const clientId = "clientId-BMtoDNPUDw";
+const clientId = "";
 
 const host = "ws://broker.mqttdashboard.com:8000/mqtt";
 
