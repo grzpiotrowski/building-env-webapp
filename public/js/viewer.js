@@ -3,6 +3,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 import { client } from "./mqttClient.js";
 
 const scene = new THREE.Scene();
@@ -15,11 +16,17 @@ let container = document.getElementById('viewer-container');
 renderer.setSize($(container).width(), $(container).height());
 container.appendChild(renderer.domElement);
 
+const labelRenderer = new CSS2DRenderer();
+labelRenderer.setSize( $(container).width(), $(container).height() );
+labelRenderer.domElement.style.position = 'absolute';
+labelRenderer.domElement.style.top = '0px';
+container.appendChild( labelRenderer.domElement );
+
 // Dynamically adjust renderer size when browser window is resized
 window.addEventListener('resize', onWindowResize);
 
 // Orbit camera controls
-const controls = new OrbitControls(camera, renderer.domElement);
+const controls = new OrbitControls(camera, labelRenderer.domElement);
 
 // Instantiate a loader
 const loader = new GLTFLoader();
@@ -74,7 +81,7 @@ scene.background = new THREE.Color( 0x6d7372 );
 
 
 
-/*** TEXT ***/
+/*** TEXT 3D ***/
 let textMesh
 const fontLoader = new FontLoader();
 
@@ -119,21 +126,40 @@ function refreshText(text) {
 	createText(text);
 }
 
+/*** LABEL ***/
+let sensorDiv;
+addLabel('pico01sensor', "SENSOR", -3, 0.8, 2);
+
+function addLabel(divId, text, x, y, z) {
+    sensorDiv = document.createElement('div');
+	sensorDiv.className = 'label';
+	sensorDiv.id = divId;
+	sensorDiv.textContent = text;
+	sensorDiv.style.marginTop = '-1em';
+	const sensorLabel = new CSS2DObject(sensorDiv);
+	sensorLabel.position.set(x, y, z);
+	scene.add(sensorLabel);
+	sensorLabel.layers.set(0);
+}
+
 function onWindowResize() {
 	let container = document.getElementById('viewer-container');
     camera.aspect = $(container).width() / $(container).height();
     camera.updateProjectionMatrix();
     renderer.setSize($(container).width(), $(container).height());
+	labelRenderer.setSize($(container).width(), $(container).height());
 }
 
 
 function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
+	labelRenderer.render( scene, camera );
 };
 
 client.on('message', (topic, message) => {
 	refreshText(message.toString());
+	sensorDiv.textContent = message.toString();
   })
 
 animate();
