@@ -1,13 +1,15 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls} from 'three/addons/controls/OrbitControls.js';
-
+import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
+import { client } from "./mqttClient.js";
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
 const renderer = new THREE.WebGLRenderer();
-renderer.setClearColor(0x6d7372, 1);
+//renderer.setClearColor(0x6d7372, 1);
 
 let container = document.getElementById('viewer-container');
 renderer.setSize($(container).width(), $(container).height());
@@ -67,6 +69,55 @@ scene.add(directionalLight2);
 const directionalLightTopDown = new THREE.DirectionalLight( 0xffffff, 2 );
 scene.add(directionalLightTopDown);
 
+scene.fog = new THREE.Fog( 0x6d7372, 10, 25 );
+scene.background = new THREE.Color( 0x6d7372 );
+
+
+
+/*** TEXT ***/
+let textMesh
+const fontLoader = new FontLoader();
+
+createText("TEST");
+
+function createText(text) {
+	fontLoader.load( '././fonts/helvetiker_regular.typeface.json', function ( font ) {
+
+		const textGeo = new TextGeometry( text, {
+
+			font: font,
+
+			size: 0.5,
+			height: 0.05,
+			curveSegments: 0.05,
+
+			bevelThickness: 0.05,
+			bevelSize: 0.02,
+			bevelEnabled: true
+
+		} );
+
+		textGeo.computeBoundingBox();
+		const centerOffset = - 0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
+
+		const textMaterial = new THREE.MeshPhongMaterial( { color: 0xff0000, specular: 0xffffff } );
+
+		textMesh = new THREE.Mesh( textGeo, textMaterial );
+		textMesh.position.x = centerOffset;
+		textMesh.position.y = 5;
+
+		textMesh.castShadow = true;
+		textMesh.receiveShadow = true;
+
+		scene.add( textMesh );
+		
+	} );
+}
+
+function refreshText(text) {
+	scene.remove(textMesh);
+	createText(text);
+}
 
 function onWindowResize() {
 	let container = document.getElementById('viewer-container');
@@ -80,5 +131,9 @@ function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
 };
+
+client.on('message', (topic, message) => {
+	refreshText(message.toString());
+  })
 
 animate();

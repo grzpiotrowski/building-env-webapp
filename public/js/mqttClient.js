@@ -40,3 +40,6 @@ client.on('connect', () => {
 client.on('message', (topic, message) => {
     console.log('Received Message: ' + message.toString() + '\nOn topic: ' + topic)
   })
+
+
+  export { client };
