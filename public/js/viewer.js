@@ -5,16 +5,18 @@ import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 import { client } from "./mqttClient.js";
+import { PickHelper } from "./pickHelper.js"
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({antialias: true});
 //renderer.setClearColor(0x6d7372, 1);
 
 let container = document.getElementById('viewer-container');
 renderer.setSize($(container).width(), $(container).height());
-container.appendChild(renderer.domElement);
+const canvas = renderer.domElement;
+container.appendChild(canvas);
 
 const labelRenderer = new CSS2DRenderer();
 labelRenderer.setSize( $(container).width(), $(container).height() );
@@ -27,6 +29,7 @@ window.addEventListener('resize', onWindowResize);
 
 // Orbit camera controls
 const controls = new OrbitControls(camera, labelRenderer.domElement);
+controls.enableDamping = true;
 
 // Instantiate a loader
 const loader = new GLTFLoader();
@@ -126,9 +129,45 @@ function refreshText(text) {
 	createText(text);
 }
 
+/** OBJECT PICKING **/
+const pickPosition = {x: 0, y: 0};
+const pickHelper = new PickHelper();
+clearPickPosition();
+
+function getCanvasRelativePosition(event) {
+	const rect = canvas.getBoundingClientRect();
+	return {
+	  x: event.clientX - rect.left,
+	  y: event.clientY - rect.top,
+	};
+}
+   
+function setPickPosition(event) {
+	const pos = getCanvasRelativePosition(event);
+	pickPosition.x = (pos.x / canvas.clientWidth ) *  2 - 1;
+	pickPosition.y = (pos.y / canvas.clientHeight) * -2 + 1;  // note we flip Y
+}
+   
+function clearPickPosition() {
+	// unlike the mouse which always has a position
+	// if the user stops touching the screen we want
+	// to stop picking. For now we just pick a value
+	// unlikely to pick something
+	pickPosition.x = -100000;
+	pickPosition.y = -100000;
+}
+
+window.addEventListener('mousemove', setPickPosition);
+window.addEventListener('mouseout', clearPickPosition);
+window.addEventListener('mouseleave', clearPickPosition);
+
+
+
+
 /*** LABEL ***/
 let sensorDiv;
-addLabel('pico01sensor', "SENSOR", -3, 0.8, 2);
+const label = addLabel('pico01sensor', "SENSOR", -3, 0.8, 2);
+let labelDiv = sensorDiv;
 
 function addLabel(divId, text, x, y, z) {
     sensorDiv = document.createElement('div');
@@ -140,6 +179,8 @@ function addLabel(divId, text, x, y, z) {
 	sensorLabel.position.set(x, y, z);
 	scene.add(sensorLabel);
 	sensorLabel.layers.set(0);
+
+	return sensorLabel;
 }
 
 function onWindowResize() {
@@ -153,6 +194,8 @@ function onWindowResize() {
 
 function animate() {
     requestAnimationFrame(animate);
+	controls.update();
+	pickHelper.pick(pickPosition, scene, camera);
     renderer.render(scene, camera);
 	labelRenderer.render( scene, camera );
 };
