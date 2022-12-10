@@ -1,0 +1,38 @@
+{{> welcomemenu id="signup"}}
+
+<div class="ui two column grid basic middle aligned segment">
+  <div class="column">
+    <img class="ui large custom-rounded image" src="images/robot-signup.jpg">
+  </div>
+  <div class="column">
+    <form class="ui stacked segment form" action="/register" method="POST">
+      <h3 class="ui header">Register</h3>
+      <div class="two fields">
+        <div class="field">
+          <label>First Name</label>
+          <input placeholder="First Name" type="text" name="firstname" value="{{firstname}}">
+        </div>
+        <div class="field">
+          <label>Last Name </label>
+          <input placeholder="Last Name" type="text" name="lastname" value="{{lastname}}">
+        </div>
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input placeholder="Email" type="text" name="email" value="{{email}}">
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" name="password">
+      </div>
+      <button class="ui blue submit button">Submit</button>
+    </form>
+    {{#if errors}}
+      {{> errormessage messageHeader="Sorry! Registration failed. Please try again."}}
+    {{/if}}
+    <div class="ui bottom attached warning message">
+      <i class="icon help"></i>
+      Already signed up? <a href="/login">Login here</a> instead.
+    </div>
+  </div>
+</div>

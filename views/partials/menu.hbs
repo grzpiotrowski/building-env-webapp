@@ -1,9 +1,19 @@
-<nav class="ui menu">
-  <header class="ui header item"> BEMS IOT </header>
+<nav class="ui huge inverted menu" style="margin-top: 0em; position:relative; z-index:999">
+  <header class="ui header item"> <a href="/dashboard"> BEMS IoT </a> </header>
+  <div class="borderless item">
+    <h4>{{activepagetitle}}</h4>
+  </div>
   <div class="right menu">
-    <a id="dashboard" class="item" href="/dashboard"> Dashboard  </a>
+    <a id="dashboard" class="item" href="/dashboard"> Dashboard </a>
     <a id="viewer" class="item" href="/viewer"> Viewer </a>
     <a id="about" class="item" href="/about"> About </a>
+    <div class="ui simple inverted dropdown item">
+      <i class="user icon"></i>
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <a id="logout" class="item" href="/logout"> Logout</a>
+      </div>
+    </div>
   </div>
 </nav>
 

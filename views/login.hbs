@@ -1,0 +1,26 @@
+{{> welcomemenu id="login"}}
+
+<div class="ui two column middle aligned grid basic segment">
+  <div class="column">
+    <form class="ui stacked segment form" action="/authenticate" method="POST">
+      <h3 class="ui header">Log-in</h3>
+      <div class="field">
+        <label>Email</label> <input placeholder="Email" name="email">
+      </div>
+      <div class="field">
+        <label>Password</label> <input type="password" name="password">
+      </div>
+      <button class="ui blue submit button">Login</button>
+    </form>
+    {{#if errors}}
+      {{> errormessage messageHeader="Log in failed. Please try again."}}
+    {{/if}}
+    <div class="ui bottom attached warning message">
+      <i class="icon help"></i>
+      New to BEMS IoT? <a href="/signup">Sign up here</a>.
+    </div>
+  </div>
+  <div class="column">
+    <img class="ui circular image" src="images/robot-padlock.jpg">
+  </div>
+</div>
