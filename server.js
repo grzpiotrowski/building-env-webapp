@@ -5,6 +5,7 @@ const logger = require("./utils/logger");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
+require('dotenv').config();
 
 const app = express();
 app.use(cookieParser());
@@ -12,6 +13,7 @@ const exphbs = require("express-handlebars");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 app.use(fileUpload());
+app.use(bodyParser.json());
 app.engine(
   ".hbs",
   exphbs({

@@ -21,13 +21,24 @@ https://threejs.org/docs/#manual/en/introduction/Creating-a-scene
 * GLTF Loader \
 https://threejs.org/docs/#examples/en/loaders/GLTFLoader
 
+* threejsfundamentals: Three.js Picking
+https://r105.threejsfundamentals.org/threejs/lessons/threejs-picking.html
+
 * Camera orbit controls \
 https://threejs.org/docs/#examples/en/controls/OrbitControls
 
 * Use WebSocket to connect to MQTT broker \
 https://emqx.medium.com/use-websocket-to-connect-to-mqtt-broker-9e7baf1aa773
 
+* How to create a REST API with Express.js in Node.js
+https://www.robinwieruch.de/node-express-server-rest-api/
+
+
+
 ## Threejs examples
 
 * 2D Label
 https://threejs.org/examples/?q=css#css2d_label
+
+* CSS3D Tooltips - THREE
+https://codesandbox.io/s/css3d-tooltips-three-2l9v5?file=/index.js

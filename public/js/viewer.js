@@ -1,12 +1,9 @@
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls} from 'three/addons/controls/OrbitControls.js';
-import { FontLoader } from 'three/addons/loaders/FontLoader.js';
-import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 import { client } from "./mqttClient.js";
-import { PickHelper } from "./pickHelper.js"
-
+import { PickHelper } from "./three-util/pickHelper.js"
+import loadGltfModel from './three-util/gltfLoaderHelper.js';
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
@@ -31,32 +28,8 @@ window.addEventListener('resize', onWindowResize);
 const controls = new OrbitControls(camera, labelRenderer.domElement);
 controls.enableDamping = true;
 
-// Instantiate a loader
-const loader = new GLTFLoader();
-
-// Load a glTF resource
-loader.load(
-	// resource URL
-	'models/building-model.glb',
-	// called when the resource is loaded
-	function (gltf) {
-		scene.add(gltf.scene);
-
-		gltf.animations; // Array<THREE.AnimationClip>
-		gltf.scene; // THREE.Group
-		gltf.scenes; // Array<THREE.Group>
-		gltf.cameras; // Array<THREE.Camera>
-		gltf.asset; // Object
-	},
-	// called while loading is progressing
-	function (xhr) {
-		console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-	},
-	// called when loading has errors
-	function (error) {
-		console.log( 'An error happened' );
-	}
-);
+// Loading GLTF model into the scene
+loadGltfModel('models/building-model.glb', scene);
 
 camera.position.x = -2.73;
 camera.position.y = 8.51;
@@ -81,53 +54,6 @@ scene.add(directionalLightTopDown);
 
 scene.fog = new THREE.Fog( 0x6d7372, 10, 25 );
 scene.background = new THREE.Color( 0x6d7372 );
-
-
-
-/*** TEXT 3D ***/
-let textMesh
-const fontLoader = new FontLoader();
-
-createText("TEST");
-
-function createText(text) {
-	fontLoader.load( '././fonts/helvetiker_regular.typeface.json', function ( font ) {
-
-		const textGeo = new TextGeometry( text, {
-
-			font: font,
-
-			size: 0.5,
-			height: 0.05,
-			curveSegments: 0.05,
-
-			bevelThickness: 0.05,
-			bevelSize: 0.02,
-			bevelEnabled: true
-
-		} );
-
-		textGeo.computeBoundingBox();
-		const centerOffset = - 0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
-
-		const textMaterial = new THREE.MeshPhongMaterial( { color: 0xff0000, specular: 0xffffff } );
-
-		textMesh = new THREE.Mesh( textGeo, textMaterial );
-		textMesh.position.x = centerOffset;
-		textMesh.position.y = 5;
-
-		textMesh.castShadow = true;
-		textMesh.receiveShadow = true;
-
-		scene.add( textMesh );
-		
-	} );
-}
-
-function refreshText(text) {
-	scene.remove(textMesh);
-	createText(text);
-}
 
 /** OBJECT PICKING **/
 const pickPosition = {x: 0, y: 0};
@@ -200,8 +126,8 @@ function animate() {
 	labelRenderer.render( scene, camera );
 };
 
+
 client.on('message', (topic, message) => {
-	refreshText(message.toString());
 	sensorDiv.textContent = message.toString();
   })
 
