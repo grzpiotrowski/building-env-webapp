@@ -1,9 +1,11 @@
 import * as THREE from 'three';
 import { OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
-import { client } from "./mqttClient.js";
-import { PickHelper } from "./three-util/pickHelper.js"
+import { client } from './mqttClient.js';
+import { PickHelper } from './three-util/pickHelper.js'
 import loadGltfModel from './three-util/gltfLoaderHelper.js';
+import { sensor } from './sensor.js';
+
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
@@ -92,14 +94,14 @@ window.addEventListener('mouseleave', clearPickPosition);
 
 /*** LABEL ***/
 let sensorDiv;
-const label = addLabel('pico01sensor', "SENSOR", -3, 0.8, 2);
+const label = addLabel('pico01', sensor, -3, 0.8, 2);
 let labelDiv = sensorDiv;
 
-function addLabel(divId, text, x, y, z) {
+function addLabel(divId, sensor, x, y, z) {
     sensorDiv = document.createElement('div');
 	sensorDiv.className = 'label';
 	sensorDiv.id = divId;
-	sensorDiv.textContent = text;
+	sensorDiv.innerHTML = `SENSOR OFFLINE`;
 	sensorDiv.style.marginTop = '-1em';
 	const sensorLabel = new CSS2DObject(sensorDiv);
 	sensorLabel.position.set(x, y, z);
@@ -117,6 +119,16 @@ function onWindowResize() {
 	labelRenderer.setSize($(container).width(), $(container).height());
 }
 
+function updateSensor(sensorData) {
+	let sensorDiv = document.getElementById(sensorData.deviceId);
+	console.log(sensorData.deviceId);
+	sensorDiv.innerHTML = `<b>Sensor:</b> ${sensorData.deviceId}<br>
+						   <b>Temperature:</b> ${sensorData.temperature}<br>
+						   <b>Humidity:</b> ${sensorData.humidity}<br>
+						   <b>Reading time:</b> ${sensorData.timestamp}
+						   `;
+}
+
 
 function animate() {
     requestAnimationFrame(animate);
@@ -128,7 +140,9 @@ function animate() {
 
 
 client.on('message', (topic, message) => {
-	sensorDiv.textContent = message.toString();
+	let sensorData = JSON.parse(message.toString());
+	console.log(sensorData);
+	updateSensor(sensorData);
   })
 
 animate();

@@ -1,4 +1,5 @@
 const clientId = "";
+const mqttTopicName = "sensor-temp-humidity"
 
 console.log(window.location.origin + "/api/mqttdetails")
 
@@ -47,7 +48,7 @@ const createMqttWSClient = async () => {
     client.on('connect', () => {
         console.log('Client connected:' + clientId)
         // Subscribe
-        client.subscribe('temperature', { qos: 0 })
+        client.subscribe(mqttTopicName, { qos: 0 })
       })
     
     // Message received
