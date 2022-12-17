@@ -123,8 +123,8 @@ function updateSensor(sensorData) {
 	let sensorDiv = document.getElementById(sensorData.deviceId);
 	console.log(sensorData.deviceId);
 	sensorDiv.innerHTML = `<b>Sensor:</b> ${sensorData.deviceId}<br>
-						   <b>Temperature:</b> ${sensorData.temperature}<br>
-						   <b>Humidity:</b> ${sensorData.humidity}<br>
+						   <b>Temperature:</b> ${sensorData.temperature}&#176;C<br>
+						   <b>Humidity:</b> ${sensorData.humidity}%<br>
 						   <b>Reading time:</b> ${sensorData.timestamp}
 						   `;
 }

@@ -7,6 +7,7 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "@influxdata/influxdb-client": "^1.33.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^16.0.3",

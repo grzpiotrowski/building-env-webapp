@@ -10,6 +10,12 @@ The goal of this project is to create a web app allowing to display a 3D model l
 ## Deployed web app
 https://building-env-monitor.glitch.me/
 
+
+## Setup
+
+
+
+
 # Resources
 
 * Three.js Tutorial Crash Course - 2021 \
@@ -33,7 +39,8 @@ https://emqx.medium.com/use-websocket-to-connect-to-mqtt-broker-9e7baf1aa773
 * How to create a REST API with Express.js in Node.js
 https://www.robinwieruch.de/node-express-server-rest-api/
 
-
+* InfluxDb API query examples \
+https://github.com/influxdata/influxdb-client-js/blob/e22fc7b26ab8f9c35357436db8c9d032e8afab3a/examples/query.ts#L66
 
 ## Threejs examples
 

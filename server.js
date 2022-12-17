@@ -28,4 +28,5 @@ app.use("/", routes);
 
 const listener = app.listen(process.env.PORT || 4000, function() {
   logger.info(`bems-iot started on port ${listener.address().port}`);
+
 });

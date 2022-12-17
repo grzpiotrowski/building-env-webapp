@@ -1,0 +1,7 @@
+MQTTBROKER = "xxxx.hivemq.cloud"
+MQTTPORT = 8884
+MQTTUSERNAME = "user"
+MQTTPASSWORD = "pass"
+INFLUXDB_TOKEN = "xxxx"
+INFLUXDB_URL = "https://xxx.cloud2.influxdata.com"
+INFLUXDB_ORG = "xxxx@xxx"
