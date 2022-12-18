@@ -93,14 +93,17 @@ window.addEventListener('mouseleave', clearPickPosition);
 
 
 /*** LABELS ***/
-const labelPico01 = addLabel('pico01', -3, 0.8, 2);
-const labelPico02 = addLabel('pico02', 3, 0.8, 2);
+const labelPico01 = addLabel('pico01', sensors[0], 3.5, 0.8, -2); // -3, 0.8, 2
+const labelPico02 = addLabel('pico02', sensors[1], 3, 0.8, 2); // 3, 0.8, 2
+const labelSenseHat = addLabel('senseHat01', sensors[2], -3, 0.8, 2) // 3.5, 0.8, -2
 
-function addLabel(divId, x, y, z) {
+function addLabel(divId, sensor, x, y, z) {
     let sensorDiv = document.createElement('div');
 	sensorDiv.className = 'label';
 	sensorDiv.id = divId;
-	sensorDiv.innerHTML = `SENSOR OFFLINE`;
+	sensorDiv.innerHTML = `<b> ${sensor.location} </b><br>
+						   <b> SENSOR OFFLINE </b>
+						  `;
 	sensorDiv.style.marginTop = '-1em';
 	const sensorLabel = new CSS2DObject(sensorDiv);
 	sensorLabel.position.set(x, y, z);
@@ -120,8 +123,12 @@ function onWindowResize() {
 
 function updateSensor(sensorData) {
 	let sensorDiv = document.getElementById(sensorData.deviceId);
+	let found = sensors.filter(function(item) { return item.id === sensorData.deviceId; });
+	let sensor = found[0];
+
 	console.log(sensorData.deviceId);
-	sensorDiv.innerHTML = `<b>Sensor:</b> ${sensorData.deviceId}<br>
+	sensorDiv.innerHTML = `<b> ${sensor.location} </b><br>
+						   <b>Sensor:</b> ${sensorData.deviceId}<br>
 						   <b>Temperature:</b> ${sensorData.temperature}&#176;C<br>
 						   <b>Humidity:</b> ${sensorData.humidity}%<br>
 						   <b>Reading time:</b> ${sensorData.timestamp}
