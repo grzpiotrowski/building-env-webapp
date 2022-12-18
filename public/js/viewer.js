@@ -4,7 +4,7 @@ import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer
 import { client } from './mqttClient.js';
 import { PickHelper } from './three-util/pickHelper.js'
 import loadGltfModel from './three-util/gltfLoaderHelper.js';
-import { sensor } from './sensor.js';
+import { sensors } from './sensor.js';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -92,13 +92,12 @@ window.addEventListener('mouseleave', clearPickPosition);
 
 
 
-/*** LABEL ***/
-let sensorDiv;
-const label = addLabel('pico01', sensor, -3, 0.8, 2);
-let labelDiv = sensorDiv;
+/*** LABELS ***/
+const labelPico01 = addLabel('pico01', -3, 0.8, 2);
+const labelPico02 = addLabel('pico02', 3, 0.8, 2);
 
-function addLabel(divId, sensor, x, y, z) {
-    sensorDiv = document.createElement('div');
+function addLabel(divId, x, y, z) {
+    let sensorDiv = document.createElement('div');
 	sensorDiv.className = 'label';
 	sensorDiv.id = divId;
 	sensorDiv.innerHTML = `SENSOR OFFLINE`;

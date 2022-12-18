@@ -40,7 +40,8 @@ https://emqx.medium.com/use-websocket-to-connect-to-mqtt-broker-9e7baf1aa773
 https://www.robinwieruch.de/node-express-server-rest-api/
 
 * InfluxDb API query examples \
-https://github.com/influxdata/influxdb-client-js/blob/e22fc7b26ab8f9c35357436db8c9d032e8afab3a/examples/query.ts#L66
+https://github.com/influxdata/influxdb-client-js/blob/e22fc7b26ab8f9c35357436db8c9d032e8afab3a/examples/query.ts#L66 \
+https://docs.influxdata.com/influxdb/cloud/api-guide/client-libraries/nodejs/query/
 
 ## Threejs examples
 
