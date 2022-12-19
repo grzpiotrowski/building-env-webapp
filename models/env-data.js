@@ -10,8 +10,9 @@ const envData = {
     const org = process.env.INFLUXDB_ORG;
     let queryApi = dbClient.getQueryApi(org)
     let fluxQuery = `from(bucket: "apartment-env-data")
-     |> range(start: -10m)
-     |> filter(fn: (r) => r._measurement == "environment")`
+     |> range(start: -30s)
+     |> filter(fn: (r) => r._measurement == "environment" and
+     r._field == "humidity")`
     const data = await queryApi.collectRows(
       fluxQuery //, you can also specify a row mapper as a second argument
     );

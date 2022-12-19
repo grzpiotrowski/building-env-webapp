@@ -12,7 +12,7 @@ const dashboard = {
       logger.info("dashboard rendering");
       let data = await envData.collectRows();
       const viewData = {
-        title: "Template 1 Dashboard",
+        title: "Dashboard",
         sensordata: data
       };
       //console.log(queryResult)
