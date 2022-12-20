@@ -44,8 +44,42 @@
       };
 
       const humidityChart = new frappe.Chart("#chartHumidity", {
-        title: "Humidity Trend",
+        title: "Humidity",
         data: humidityChartData,
+        type: 'line',
+        lineOptions: {
+          regionFill: 1,
+          hideDots: 1
+        },
+        height: 350,
+      });
+    });
+
+  const temperatureData = await getJsonData('/api/temperaturereadings').then( (temperatureData) => {
+      const sensorsData = getDataPerSensor(temperatureData);
+      console.log(sensorsData);
+
+      let dates = [];
+      let temperatureDatasets = [];
+      sensorsData.forEach(sensor => {
+        let temperatureValues = [];
+        sensor.forEach(reading =>{
+          dates.push(reading._time);
+          temperatureValues.push(reading._value);
+        });
+        temperatureDatasets.push({name: sensor[0].deviceId, type: "line",
+                              values: temperatureValues
+                              });
+      });
+
+      const temperatureChartData = {
+        labels: dates,
+        datasets: temperatureDatasets
+      };
+
+      const temperatureChart = new frappe.Chart("#chartTemperature", {
+        title: "Temperature",
+        data: temperatureChartData,
         type: 'line',
         lineOptions: {
           regionFill: 1,
