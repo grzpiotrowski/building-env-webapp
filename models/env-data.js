@@ -10,7 +10,7 @@ const envData = {
     const org = process.env.INFLUXDB_ORG;
     let queryApi = dbClient.getQueryApi(org)
     let fluxQuery = `from(bucket: "${bucket}")
-     |> range(start: -30s)
+     |> range(start: -10m)
      |> filter(fn: (r) => r._measurement == "${measurement}" and
      r._field == "${field}")`
     const data = await queryApi.collectRows(

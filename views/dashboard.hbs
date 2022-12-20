@@ -1,28 +1,8 @@
 {{> menu id="dashboard"}}
 
 <section class="ui segment">
-  {{> mainpanel}}
 
   {{> trend-charts humidityData=humidityData }}
-
-  <table class="ui striped table">
-    <thead>
-    <tr>
-      <th> Time </th>
-      <th> Device </th>
-      <th> Humidity </th>
-    </tr>
-    </thead>
-    <tbody>
-      {{#each sensordata}}
-        <tr>
-          <td> {{this._time}} </td>
-          <td> {{this.deviceId}} </td>
-          <td> {{this._value}} </td>
-        </tr>
-      {{/each}}
-    </tbody>
-  </table>
 
 </section>
 

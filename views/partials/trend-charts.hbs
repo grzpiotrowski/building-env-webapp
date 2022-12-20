@@ -25,24 +25,22 @@
       const sensorsData = getDataPerSensor(humidityData);
       console.log(sensorsData);
 
-      const sensor0 = sensorsData[0];
-
-      var dates = [];
-      var humidityValues = [];
-      sensor0.forEach(reading =>{
-        dates.push(reading._time);
-        humidityValues.push(reading._value);
+      let dates = [];
+      let humidityDatasets = [];
+      sensorsData.forEach(sensor => {
+        let humidityValues = [];
+        sensor.forEach(reading =>{
+          dates.push(reading._time);
+          humidityValues.push(reading._value);
+        });
+        humidityDatasets.push({name: sensor[0].deviceId, type: "line",
+                              values: humidityValues
+                              });
       });
-
 
       const humidityChartData = {
         labels: dates,
-        datasets: [
-          {
-            name: "Humidity Sensor 0", type: "line",
-            values: humidityValues
-           }
-        ]
+        datasets: humidityDatasets
       };
 
       const humidityChart = new frappe.Chart("#chartHumidity", {
@@ -50,14 +48,13 @@
         data: humidityChartData,
         type: 'line',
         lineOptions: {
-          regionFill: 1
+          regionFill: 1,
+          hideDots: 1
         },
-        height: 250,
-        colors: ['green'],
+        height: 350,
       });
-
-
     });
+
   }
 
   main();

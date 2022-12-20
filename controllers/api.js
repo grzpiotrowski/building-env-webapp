@@ -30,6 +30,17 @@ const api = {
     } else {
       response.send("NOT AUTHORIZED ACCESS!");
     }
+  },
+
+  async temperatureReadings(request, response) {
+    const loggedInUser = userstore.getCurrentUser(request);
+    if (loggedInUser) {
+      logger.info("TemperatureReadings API response");
+      let temperatureData = await envData.collectDataRows("apartment-env-data", "environment", "temperature");
+      response.json(temperatureData);
+    } else {
+      response.send("NOT AUTHORIZED ACCESS!");
+    }
   }
 };
   
