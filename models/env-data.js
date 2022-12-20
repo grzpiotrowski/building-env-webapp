@@ -5,14 +5,14 @@ const dbClient = require("../db");
 
 const envData = {
   // Execute query and collect result rows in a Promise.
-  async collectRows() {
+  async collectDataRows(bucket, measurement, field) {
     console.log('\n*** CollectRows ***')
     const org = process.env.INFLUXDB_ORG;
     let queryApi = dbClient.getQueryApi(org)
-    let fluxQuery = `from(bucket: "apartment-env-data")
+    let fluxQuery = `from(bucket: "${bucket}")
      |> range(start: -30s)
-     |> filter(fn: (r) => r._measurement == "environment" and
-     r._field == "humidity")`
+     |> filter(fn: (r) => r._measurement == "${measurement}" and
+     r._field == "${field}")`
     const data = await queryApi.collectRows(
       fluxQuery //, you can also specify a row mapper as a second argument
     );

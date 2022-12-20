@@ -21,5 +21,6 @@ router.post('/register', accounts.register);
 router.post('/authenticate', accounts.authenticate);
 
 router.get("/api/mqttdetails", api.mqttDetails);
+router.get("/api/humidityreadings", api.humidityReadings);
 
 module.exports = router;

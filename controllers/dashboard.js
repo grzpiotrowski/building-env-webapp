@@ -10,12 +10,12 @@ const dashboard = {
     const loggedInUser = userstore.getCurrentUser(request);
     if (loggedInUser) {
       logger.info("dashboard rendering");
-      let data = await envData.collectRows();
+      let humidityData = await envData.collectDataRows("apartment-env-data", "environment", "humidity");
       const viewData = {
         title: "Dashboard",
-        sensordata: data
+        humidityData: humidityData
       };
-      //console.log(queryResult)
+      console.log(humidityData)
       response.render("dashboard", viewData);
     } else {
       response.redirect("/login");

@@ -51,3 +51,9 @@ https://threejs.org/examples/?q=css#css2d_label
 
 * CSS3D Tooltips - THREE
 https://codesandbox.io/s/css3d-tooltips-three-2l9v5?file=/index.js
+
+## Images
+Images used in this project were generated using DALL·E 2 AI system
+which can create realistic images and art from a description in natural language. \
+Link to DALL·E 2 website: \
+https://openai.com/dall-e-2/

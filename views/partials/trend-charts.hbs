@@ -1,0 +1,65 @@
+<div class="ui segment" id="chartTemperature"></div>
+<div class="ui segment" id="chartHumidity"></div>
+
+<script>
+
+  const getJsonData = async (apiEndPoint) => {
+    const response = await fetch(apiEndPoint);
+    const myJson = await response.json(); //extract JSON from the http response
+    return myJson;
+  }
+
+  const getDataPerSensor = (jsonData) => {
+    const humidityData = jsonData;
+    // Get an array of unique deviceIds in the data
+    let devices = Array.from(new Set(humidityData.map(({ deviceId }) => deviceId)));
+    let sensorsData = [];
+    devices.forEach(deviceId => {
+      sensorsData.push(humidityData.filter(obj => obj.deviceId === deviceId));
+    });
+    return sensorsData
+  }
+
+  const main = async () => {
+    const humidityData = await getJsonData('/api/humidityreadings').then( (humidityData) => {
+      const sensorsData = getDataPerSensor(humidityData);
+      console.log(sensorsData);
+
+      const sensor0 = sensorsData[0];
+
+      var dates = [];
+      var humidityValues = [];
+      sensor0.forEach(reading =>{
+        dates.push(reading._time);
+        humidityValues.push(reading._value);
+      });
+
+
+      const humidityChartData = {
+        labels: dates,
+        datasets: [
+          {
+            name: "Humidity Sensor 0", type: "line",
+            values: humidityValues
+           }
+        ]
+      };
+
+      const humidityChart = new frappe.Chart("#chartHumidity", {
+        title: "Humidity Trend",
+        data: humidityChartData,
+        type: 'line',
+        lineOptions: {
+          regionFill: 1
+        },
+        height: 250,
+        colors: ['green'],
+      });
+
+
+    });
+  }
+
+  main();
+
+</script>
