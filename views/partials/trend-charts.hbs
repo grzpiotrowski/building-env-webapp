@@ -31,7 +31,9 @@
         let humidityValues = [];
         sensor.forEach(reading =>{
           dates.push(reading._time);
-          humidityValues.push(reading._value);
+          if (reading._value) {
+            humidityValues.push(reading._value.toFixed(1));
+          } else { humidityValues.push(reading._value); }
         });
         humidityDatasets.push({name: sensor[0].deviceId, type: "line",
                               values: humidityValues
@@ -65,7 +67,9 @@
         let temperatureValues = [];
         sensor.forEach(reading =>{
           dates.push(reading._time);
-          temperatureValues.push(reading._value);
+          if (reading._value) {
+            temperatureValues.push(reading._value.toFixed(1));
+          } else { temperatureValues.push(reading._value); }
         });
         temperatureDatasets.push({name: sensor[0].deviceId, type: "line",
                               values: temperatureValues

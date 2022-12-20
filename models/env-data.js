@@ -10,9 +10,10 @@ const envData = {
     const org = process.env.INFLUXDB_ORG;
     let queryApi = dbClient.getQueryApi(org)
     let fluxQuery = `from(bucket: "${bucket}")
-     |> range(start: -10m)
+     |> range(start: -1d)
      |> filter(fn: (r) => r._measurement == "${measurement}" and
-     r._field == "${field}")`
+     r._field == "${field}")
+     |> aggregateWindow(every: 15m, fn: mean, createEmpty: true)`
     const data = await queryApi.collectRows(
       fluxQuery //, you can also specify a row mapper as a second argument
     );

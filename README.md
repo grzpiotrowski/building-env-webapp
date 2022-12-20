@@ -39,7 +39,13 @@ https://emqx.medium.com/use-websocket-to-connect-to-mqtt-broker-9e7baf1aa773
 * How to create a REST API with Express.js in Node.js
 https://www.robinwieruch.de/node-express-server-rest-api/
 
-* InfluxDb API query examples \
+* InfluxDb: Flux syntax \
+https://docs.influxdata.com/influxdb/v1.8/flux/get-started/syntax-basics/
+
+* Flux query - windowing data \
+https://docs.influxdata.com/influxdb/v2.0/query-data/flux/window-aggregate/#windowing-data
+
+* InfluxDb API docs and query examples \
 https://github.com/influxdata/influxdb-client-js/blob/e22fc7b26ab8f9c35357436db8c9d032e8afab3a/examples/query.ts#L66 \
 https://docs.influxdata.com/influxdb/cloud/api-guide/client-libraries/nodejs/query/ \
 https://docs.influxdata.com/influxdb/v2.6/query-data/flux/
