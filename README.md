@@ -53,6 +53,9 @@ https://github.com/influxdata/influxdb-client-js/blob/e22fc7b26ab8f9c35357436db8
 https://docs.influxdata.com/influxdb/cloud/api-guide/client-libraries/nodejs/query/ \
 https://docs.influxdata.com/influxdb/v2.6/query-data/flux/
 
+* InfluxDb API - Checks \
+https://docs.influxdata.com/influxdb/v2.0/api/#tag/Checks
+
 ## Threejs examples
 
 * 2D Label \
