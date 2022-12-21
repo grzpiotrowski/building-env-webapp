@@ -27,10 +27,14 @@
 
       let dates = [];
       let humidityDatasets = [];
+
+      sensorsData[0].forEach(reading => {
+        dates.push(reading._time);
+      });
+
       sensorsData.forEach(sensor => {
         let humidityValues = [];
         sensor.forEach(reading =>{
-          dates.push(reading._time);
           if (reading._value) {
             humidityValues.push(reading._value.toFixed(1));
           } else { humidityValues.push(reading._value); }
@@ -53,7 +57,7 @@
           regionFill: 1,
           hideDots: 1
         },
-        height: 350,
+        height: 450,
       });
     });
 
@@ -63,10 +67,14 @@
 
       let dates = [];
       let temperatureDatasets = [];
+
+      sensorsData[0].forEach(reading => {
+        dates.push(reading._time);
+      });
+
       sensorsData.forEach(sensor => {
         let temperatureValues = [];
         sensor.forEach(reading =>{
-          dates.push(reading._time);
           if (reading._value) {
             temperatureValues.push(reading._value.toFixed(1));
           } else { temperatureValues.push(reading._value); }
@@ -74,6 +82,8 @@
         temperatureDatasets.push({name: sensor[0].deviceId, type: "line",
                               values: temperatureValues
                               });
+        console.log(dates)
+        console.log(temperatureValues)
       });
 
       const temperatureChartData = {
@@ -89,7 +99,7 @@
           regionFill: 1,
           hideDots: 1
         },
-        height: 350,
+        height: 450,
       });
     });
 
