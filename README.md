@@ -10,6 +10,9 @@ The goal of this project is to create a web app allowing to display a 3D model l
 ## Deployed web app
 https://building-env-monitor.glitch.me/
 
+3D Viewer displaying real-time sensor data:
+
+![3D Viewer demo](/docs/images/viewer3d-demo.gif)
 
 ## Setup
 
@@ -52,10 +55,10 @@ https://docs.influxdata.com/influxdb/v2.6/query-data/flux/
 
 ## Threejs examples
 
-* 2D Label
+* 2D Label \
 https://threejs.org/examples/?q=css#css2d_label
 
-* CSS3D Tooltips - THREE
+* CSS3D Tooltips - THREE \
 https://codesandbox.io/s/css3d-tooltips-three-2l9v5?file=/index.js
 
 ## Images
