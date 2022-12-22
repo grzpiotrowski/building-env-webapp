@@ -56,6 +56,12 @@ https://docs.influxdata.com/influxdb/v2.6/query-data/flux/
 * InfluxDb API - Checks \
 https://docs.influxdata.com/influxdb/v2.0/api/#tag/Checks
 
+* How to Make PATCH Requests with Axios \
+https://masteringjs.io/tutorials/axios/axios-patch
+
+* Handlebars templating engine documentation \
+https://handlebarsjs.com/guide/
+
 ## Threejs examples
 
 * 2D Label \

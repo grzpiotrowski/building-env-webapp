@@ -10,8 +10,19 @@ const dashboard = {
     const loggedInUser = userstore.getCurrentUser(request);
     if (loggedInUser) {
       logger.info("dashboard rendering");
+      let checkData = [];
+      await influxDbAlerts.getAllChecks().then((checks) => {
+        checks.forEach((check) => {
+          checkData.push({
+            "id": check.id,
+            "name": check.name,
+            "thresholds": check.thresholds
+          })
+        });
+      });
       const viewData = {
         title: "Dashboard",
+        checkData: checkData,
       };
       response.render("dashboard", viewData);
     } else {
