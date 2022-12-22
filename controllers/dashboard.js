@@ -4,6 +4,7 @@
 const logger = require("../utils/logger");
 const userstore = require("../models/user-store");
 const influxDbAlerts = require('../utils/influxdb-alerts');
+const openWeatherRequests = require("../utils/openweather-requests")
 
 const dashboard = {
   async index(request, response) {
@@ -20,6 +21,12 @@ const dashboard = {
           })
         });
       });
+      const lat = 53.179;
+      const lon = -6.815;
+
+      let weatherData = await openWeatherRequests.get5DayForecast(lat, lon);
+      console.log(weatherData);
+      
       const viewData = {
         title: "Dashboard",
         checkData: checkData,

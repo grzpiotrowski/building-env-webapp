@@ -68,3 +68,10 @@ https://www.influxdata.com/blog/tldr-influxdb-tech-tips-configuring-slack-notifi
 ![InfluxDb - Notification rules - Create](/docs/images/influx-db-notification-rules-create.jpg)
 
 ![InfluxDb - Notification rules - Created](/docs/images/influx-db-notification-rules-created.jpg)
+
+![InfluxDb - Notification test](/docs/images/slack-notification-test.jpg)
+
+
+## OpenWeatherAPI
+Free 5 day forecast data available:
+https://openweathermap.org/forecast5
