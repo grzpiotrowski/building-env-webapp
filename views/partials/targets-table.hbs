@@ -11,10 +11,13 @@
         <tr>
             <td>{{../this.name}}</td>
             <td>
-              <form class="ui form" id="update-temperature-form" action="" method="POST">
+              <form class="ui form" id="update-temperature-form" action="/dashboard/updatetarget/{{../this.id}}" method="POST">
                 <div class="fields">
                     <div class="four wide field">
-                      <input value={{this.value}} type="number" step="1" required="true">
+                      <input name="targetValue" value={{this.value}} type="number" step="1" required="true">
+                    </div>
+                    <div>
+                        <input type="hidden" value="{{this.level}}" name="level" type="text" value="{{this.level}}" readonly>
                     </div>
                     <button class="ui green submit button">Update</button>
                 </div>

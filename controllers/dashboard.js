@@ -29,6 +29,24 @@ const dashboard = {
       response.redirect("/login");
     }
     
+  },
+
+  async updateTargetTemperature(request, response) {
+    const loggedInUser = userstore.getCurrentUser(request);
+    if (loggedInUser) {
+      logger.info("Updating target temperature");
+      const checkId = request.params.id;
+      const newValue = Number(request.body.targetValue);
+      const level = request.body.level;
+      console.log(`check to update: ${checkId}`)
+      console.log(`new value: ${newValue} for level ${level}`);
+      let check = await influxDbAlerts.getCheck(checkId);
+      await influxDbAlerts.updateThreshold(checkId, check, level, newValue);
+
+      response.redirect("/dashboard");
+    } else {
+      response.redirect("/login");
+    }
   }
 
 };

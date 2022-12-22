@@ -20,6 +20,8 @@ router.get('/logout', accounts.logout);
 router.post('/register', accounts.register);
 router.post('/authenticate', accounts.authenticate);
 
+router.post('/dashboard/updatetarget/:id', dashboard.updateTargetTemperature);
+
 router.get("/api/mqttdetails", api.mqttDetails);
 router.get("/api/humidityreadings", api.humidityReadings);
 router.get("/api/temperaturereadings", api.temperatureReadings);
