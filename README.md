@@ -56,6 +56,9 @@ https://docs.influxdata.com/influxdb/v2.6/query-data/flux/
 * InfluxDb API - Checks \
 https://docs.influxdata.com/influxdb/v2.0/api/#tag/Checks
 
+* InfluxDb Slack Notifications Guide \
+https://www.influxdata.com/blog/tldr-influxdb-tech-tips-configuring-slack-notification-with-influxdb/
+
 * How to Make PATCH Requests with Axios \
 https://masteringjs.io/tutorials/axios/axios-patch
 

@@ -31,3 +31,40 @@ After inputting all the values, click the tick button in the upper right corner 
 Now going to the **Alerts History** menu, we can see any alerts that were triggered, their time, type and messages attached.
 
 ![InfluxDb - Alerts - History](/docs/images/influxdb-alerts-history.jpg)
+
+
+## Slack
+
+Slack notifications were set up following this guide: \
+https://www.influxdata.com/blog/tldr-influxdb-tech-tips-configuring-slack-notification-with-influxdb/
+
+![Slack - Select Workspace](/docs/images/slack-select-workspace.jpg)
+
+![Slack - Create an app](/docs/images/slack-create-an-app.jpg)
+
+![Slack - Create from scratch](/docs/images/slack-create-an-app-from-scratch.jpg)
+
+![Slack - Select App name/Workspace](/docs/images/slack-appname-workspace.jpg)
+
+![Slack - Incoming webhooks On](/docs/images/slack-incoming-webhooks.jpg)
+
+![Slack - Add new webhook](/docs/images/slack-new-webhook.jpg)
+
+![Slack - Select channel](/docs/images/slack-select-channel.jpg)
+
+![Slack - Webhook URL](/docs/images/slack-webhook-url.jpg)
+
+
+## InfluxDb Notification Endpoints
+![InfluxDb - Notification endpoints](/docs/images/influx-db-notification-endpoints.jpg)
+
+![InfluxDb - Slack webhook](/docs/images/influx-db-slack-webhook.jpg)
+
+![InfluxDb - Notification endpoint created](/docs/images/influx-db-notification-endpoints-created.jpg)
+
+## InfluxDb Notification Rules
+![InfluxDb - Notification rules](/docs/images/influx-db-notification-rules.jpg)
+
+![InfluxDb - Notification rules - Create](/docs/images/influx-db-notification-rules-create.jpg)
+
+![InfluxDb - Notification rules - Created](/docs/images/influx-db-notification-rules-created.jpg)
