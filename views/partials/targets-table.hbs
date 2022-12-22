@@ -3,7 +3,6 @@
     <tr>
       <th> Sensor </th>
       <th> Target temperature [&#176;C]</th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -11,8 +10,16 @@
       {{#each this.thresholds}}
         <tr>
             <td>{{../this.name}}</td>
-            <td>{{this.value}}</td>
-            <td></td>
+            <td>
+              <form class="ui form" id="update-temperature-form" action="" method="POST">
+                <div class="fields">
+                    <div class="four wide field">
+                      <input value={{this.value}} type="number" step="1" required="true">
+                    </div>
+                    <button class="ui green submit button">Update</button>
+                </div>
+              </form>
+            </td>
         </tr>
       {{/each}}
     {{/each}}
