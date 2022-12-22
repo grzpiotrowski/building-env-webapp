@@ -1,0 +1,34 @@
+<div class="ui segment" id="chartForecastTemp"></div>
+
+
+<script>
+  const forecastTempData = {
+    labels: [
+      {{#each forecastDates}}
+        "{{this}}",
+      {{/each}}
+    ],
+    datasets: [
+      {
+        name: "Temperature", type: "line",
+        values: [
+          {{#each forecastTemp}}
+            {{this}},
+          {{/each}}
+        ]
+      }
+    ]
+  }
+
+  const chartForecastTemp = new frappe.Chart("#chartForecastTemp", {
+    title: "Temperature Forecast",
+    data: forecastTempData,
+    type: 'line',
+    lineOptions: {
+      regionFill: 1
+    },
+    height: 250,
+    colors: ['blue'],
+  });
+
+</script>

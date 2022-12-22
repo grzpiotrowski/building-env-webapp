@@ -30,7 +30,7 @@ https://threejs.org/docs/#manual/en/introduction/Creating-a-scene
 * GLTF Loader \
 https://threejs.org/docs/#examples/en/loaders/GLTFLoader
 
-* threejsfundamentals: Three.js Picking
+* threejsfundamentals: Three.js Picking \
 https://r105.threejsfundamentals.org/threejs/lessons/threejs-picking.html
 
 * Camera orbit controls \

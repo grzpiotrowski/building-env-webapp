@@ -23,7 +23,6 @@
   const main = async () => {
     const humidityData = await getJsonData('/api/humidityreadings').then( (humidityData) => {
       const sensorsData = getDataPerSensor(humidityData);
-      console.log(sensorsData);
 
       let dates = [];
       let humidityDatasets = [];
@@ -63,7 +62,6 @@
 
   const temperatureData = await getJsonData('/api/temperaturereadings').then( (temperatureData) => {
       const sensorsData = getDataPerSensor(temperatureData);
-      console.log(sensorsData);
 
       let dates = [];
       let temperatureDatasets = [];
@@ -82,8 +80,6 @@
         temperatureDatasets.push({name: sensor[0].deviceId, type: "line",
                               values: temperatureValues
                               });
-        console.log(dates)
-        console.log(temperatureValues)
       });
 
       const temperatureChartData = {

@@ -23,13 +23,19 @@ const dashboard = {
       });
       const lat = 53.179;
       const lon = -6.815;
-
-      let weatherData = await openWeatherRequests.get5DayForecast(lat, lon);
-      console.log(weatherData);
+      let forecastDates = [], forecastTemp = [];
+      await openWeatherRequests.get5DayForecast(lat, lon).then((data) => {
+        data.forEach((chunk) => {
+          forecastDates.push(chunk.dt_txt);
+          forecastTemp.push(chunk.main.temp.toFixed(1));
+        })
+      });
       
       const viewData = {
         title: "Dashboard",
         checkData: checkData,
+        forecastDates: forecastDates,
+        forecastTemp: forecastTemp,
       };
       response.render("dashboard", viewData);
     } else {
