@@ -15,8 +15,8 @@ https://building-env-monitor.glitch.me/
 ![3D Viewer demo](/docs/images/viewer3d-demo.gif)
 
 ## Setup
-
-
+Please refer to the documentation for the setup steps required: \
+[building-env-webapp docs](/docs/index.md)
 
 
 # Resources
