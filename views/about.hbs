@@ -1,10 +1,58 @@
-{{> menu id="about"}}
+{{> menu id="about" activepagetitle="About"}}
 
 <section class="ui center aligned middle aligned segment">
-  <h3>
-    About this app
-  </h3>
-  <p>
-    To be replaced with content...
-  </p>
+  <h2 class="ui header">About BEMS-IoT</h2>
+  <h3 class="ui header">How to use the monitoring Web App</h3>
+  <div class="ui middle aligned stackable vertically divided grid container">
+    <div class="row">
+      <div class="six wide column">
+        <h3 class="ui header">Sensor data charts</h3>
+        <p>
+          All the real-time sensor data is safely stored in the cloud database.
+          We are aggregating this data into 15 minute intervals and displaying the readings for the past 24 hours.
+        </p>
+      </div>
+      <div class="ten wide column">
+        <img src="images/about/dashboard-temperature-chart.jpg" class="ui huge rounded image">
+      </div>
+    </div>
+    <div class="row">
+      <div class="six wide column">
+        <h3 class="ui header">Target temperatures</h3>
+        <p>
+          You can set a target temperature for each sensor and receive a Slack notification when it has been reached!
+          This feature uses InfluxDb Alerts and updates the alert thresholds through the API.
+        </p>
+      </div>
+      <div class="ten wide column">
+        <img src="images/about/dashboard-temperature-targets.jpg" class="ui huge rounded image">
+      </div>
+    </div>
+    <div class="row">
+      <div class="six wide column">
+        <h3 class="ui header">Weather forecast</h3>
+        <p>
+          This 5 day temperature forecast for your location can help you prepare for the cold!
+          The hint above the chart tells you when the minimum temperature is predicted within the next 5 days.
+          As well as suggests using the heating if it is going to be cold out there!
+        </p>
+      </div>
+      <div class="ten wide column">
+        <img src="images/about/dashboard-weather-forecast.jpg" class="ui huge rounded image">
+      </div>
+    </div>
+    <div class="row">
+      <div class="six wide column">
+        <h3 class="ui header">3D Viewer</h3>
+        <p>
+          What's the point of having all these data if you cannot tell where it is all located?
+          This 3D viewer will help you to know exactly where your sensor readings are coming from!
+          Sensor data in this viewer is real time, updated every 5 seconds.
+        </p>
+      </div>
+      <div class="ten wide column">
+        <img src="images/about/about-3d-viewer.jpg" class="ui huge rounded image">
+      </div>
+    </div>
+  </div>
 </section>
