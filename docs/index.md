@@ -38,19 +38,36 @@ Now going to the **Alerts History** menu, we can see any alerts that were trigge
 Slack notifications were set up following this guide: \
 https://www.influxdata.com/blog/tldr-influxdb-tech-tips-configuring-slack-notification-with-influxdb/
 
+Go to https://api.slack.com/apps and sign in to your Slack account.
+Select an existing workspace or create a new one specifically for the IoT notifications.
+
 ![Slack - Select Workspace](/docs/images/slack-select-workspace.jpg)
+
+Click the **Create an App** button.
 
 ![Slack - Create an app](/docs/images/slack-create-an-app.jpg)
 
+Select **Create from scratch**
+
 ![Slack - Create from scratch](/docs/images/slack-create-an-app-from-scratch.jpg)
+
+Type in the name of your app and select the workspace to be used for IoT notifications.
 
 ![Slack - Select App name/Workspace](/docs/images/slack-appname-workspace.jpg)
 
+**Activate incoming webhooks** by toggling the switch On.
+
 ![Slack - Incoming webhooks On](/docs/images/slack-incoming-webhooks.jpg)
+
+Click **Add new webhook to workspace**
 
 ![Slack - Add new webhook](/docs/images/slack-new-webhook.jpg)
 
+Select a Slack channel which will be used by the app to post notifications and click **Allow**.
+
 ![Slack - Select channel](/docs/images/slack-select-channel.jpg)
+
+Your webhook has now been created. Copy the **Webhook URL** and go to InfluxDb.
 
 ![Slack - Webhook URL](/docs/images/slack-webhook-url.jpg)
 
