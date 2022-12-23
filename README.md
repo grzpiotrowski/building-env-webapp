@@ -78,3 +78,7 @@ Images used in this project were generated using DALL·E 2 AI system
 which can create realistic images and art from a description in natural language. \
 Link to DALL·E 2 website: \
 https://openai.com/dall-e-2/
+
+## Known issues
+Glitch seems to not support the newest version of axios module.
+If you are having any errors related to axios after deploying the app to Glitch, go to package.json and change axios version to "^0.21" and then run *npm install*.

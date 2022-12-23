@@ -4,8 +4,8 @@ const conversions = {
     timestampToDateString(timestamp) {
         var date = new Date(timestamp * 1000);
         var year = date.getFullYear();
-        var month = date.getMonth();
-        var day = "0" + date.getDay();
+        var month = date.getMonth() + 1;
+        var day = "0" + date.getDate();
         var hours = date.getHours();
         var minutes = "0" + date.getMinutes();
         var seconds = "0" + date.getSeconds();
