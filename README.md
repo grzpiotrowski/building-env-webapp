@@ -8,7 +8,7 @@ https://github.com/grzpiotrowski/building-env-monitor
 The goal of this project is to create a web app allowing to display a 3D model loaded from a gltf or glb file, and integrate real time sensor data from an IoT device using websockets.
 
 ## Video presentation
-https://youtu.be/xUrZlsG5YCo
+https://youtu.be/r7cTduhuFsI
 
 ## Deployed web app
 https://building-env-monitor.glitch.me/
