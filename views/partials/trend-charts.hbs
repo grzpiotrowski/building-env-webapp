@@ -3,6 +3,16 @@
 
 <script>
 
+  const formatDatetimeIsoString = (dateString) => {
+    const date = new Date(dateString);
+    let day = String(date.getDate()).padStart(2, '0');
+    let month = String(date.getMonth()+1).padStart(2, '0');
+    let year = String(date.getFullYear());
+    let hours = String(date.getHours()).padStart(2, '0');
+    let minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
+  }  
+
   const getJsonData = async (apiEndPoint) => {
     const response = await fetch(apiEndPoint);
     const myJson = await response.json(); //extract JSON from the http response
@@ -28,7 +38,7 @@
       let humidityDatasets = [];
 
       sensorsData[0].forEach(reading => {
-        dates.push(reading._time);
+        dates.push(formatDatetimeIsoString(reading._time));
       });
 
       sensorsData.forEach(sensor => {
@@ -56,6 +66,9 @@
           regionFill: 1,
           hideDots: 1
         },
+        axisOptions: {
+          xIsSeries: true
+        },
         height: 450,
       });
     });
@@ -67,7 +80,7 @@
       let temperatureDatasets = [];
 
       sensorsData[0].forEach(reading => {
-        dates.push(reading._time);
+        dates.push(formatDatetimeIsoString(reading._time));
       });
 
       sensorsData.forEach(sensor => {
@@ -94,6 +107,9 @@
         lineOptions: {
           regionFill: 1,
           hideDots: 1
+        },
+        axisOptions: {
+          xIsSeries: true
         },
         height: 450,
       });
