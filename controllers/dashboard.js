@@ -14,11 +14,13 @@ const dashboard = {
       let checkData = [];
       await influxDbAlerts.getAllChecks().then((checks) => {
         checks.forEach((check) => {
-          checkData.push({
-            "id": check.id,
-            "name": check.name,
-            "thresholds": check.thresholds
-          })
+          if (check.name.startsWith("Temperature")) {
+            checkData.push({
+              "id": check.id,
+              "name": check.name,
+              "thresholds": check.thresholds
+            });
+          }
         });
       });
       const lat = 53.179;

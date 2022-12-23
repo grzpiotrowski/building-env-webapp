@@ -1,11 +1,13 @@
 {{> menu id="dashboard"}}
 
 <section class="ui segment">
-
+  <h1 class="ui header"> Sensor data </h1>
   {{> trend-charts humidityData=humidityData }}
 
+  <h1 class="ui header"> Temperature targets </h1>
   {{> targets-table checkData=checkData }}
 
+  <h1 class="ui header"> Weather forecast - 5 days </h1>
   {{> forecast-chart }}
 
 </section>

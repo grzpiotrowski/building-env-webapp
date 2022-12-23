@@ -5,6 +5,7 @@ import { client } from './mqttClient.js';
 import { PickHelper } from './three-util/pickHelper.js'
 import loadGltfModel from './three-util/gltfLoaderHelper.js';
 import { sensors } from './sensor.js';
+import { conversions } from './conversions.js';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -131,7 +132,7 @@ function updateSensor(sensorData) {
 						   <b>Sensor:</b> ${sensorData.deviceId}<br>
 						   <b>Temperature:</b> ${sensorData.temperature}&#176;C<br>
 						   <b>Humidity:</b> ${sensorData.humidity}%<br>
-						   <b>Reading time:</b> ${sensorData.timestamp}
+						   <b>Time:</b> ${conversions.timestampToDateString(sensorData.timestamp)}
 						   `;
 }
 
