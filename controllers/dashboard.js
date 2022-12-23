@@ -6,7 +6,6 @@ const userstore = require("../models/user-store");
 const influxDbAlerts = require('../utils/influxdb-alerts');
 const openWeatherRequests = require("../utils/openweather-requests")
 const weatherAnalytics = require("../utils/weatherAnalytics");
-const { getHeatingSuggestion } = require("../utils/weatherAnalytics");
 
 const dashboard = {
   async index(request, response) {

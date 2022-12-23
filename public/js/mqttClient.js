@@ -1,8 +1,6 @@
 const clientId = "";
 const mqttTopicName = "sensor-temp-humidity"
 
-console.log(window.location.origin + "/api/mqttdetails")
-
 const createMqttWSClient = async () => {
   const response = await fetch(window.location.origin + "/api/mqttdetails", {
     headers: {
